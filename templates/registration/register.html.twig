@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Register{% endblock %}
+
+{% block body %}
+<div class="container mx-auto mt-11 px-4">
+    {% for flash_error in app.flashes('verify_email_error') %}
+        <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
+    {% endfor %}
+
+    <h1 class="text-2xl font-semibold text-center mb-3">Sign up</h1>
+
+    {{ form_errors(registrationForm) }}
+
+    {{ form_start(registrationForm) }}
+        {{ form_row(registrationForm.email) }}
+        {{ form_row(registrationForm.username) }}
+        {{ form_row(registrationForm.plainPassword.first) }}
+        {{ form_row(registrationForm.plainPassword.second) }}
+        {{ form_row(registrationForm.agreeTerms) }}
+
+        <button type="submit" class="w-full bg-indigo-500 hover:bg-indigo-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Sing up</button>
+        <p class="py-4">
+            Already have an account ? <a class="inline-block no-underline hover:text-black hover:underline" href="{{ path('app_login') }}">Sing up</a>
+        </p>
+    {{ form_end(registrationForm) }}
+</div>
+{% endblock %}
